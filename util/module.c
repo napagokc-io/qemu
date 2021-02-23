@@ -183,10 +183,13 @@ static const struct {
     { "ui-spice-app",   "chardev-spice" },
 
 #ifdef CONFIG_OPENGL
+#ifdef CONFIG_EGL
     { "ui-egl-headless", "ui-opengl"    },
     { "ui-gtk",          "ui-opengl"    },
     { "ui-sdl",          "ui-opengl"    },
     { "ui-spice-core",   "ui-opengl"    },
+#endif
+    { "ui-cocoa",        "ui-opengl"    },
 #endif
 };
 #endif
