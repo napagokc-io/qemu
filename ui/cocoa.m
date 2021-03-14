@@ -334,7 +334,6 @@ static void handleAnyDeviceErrors(Error * err)
 - (float) cdx;
 - (float) cdy;
 - (QEMUScreen) gscreen;
-- (void) raiseAllKeys;
 @end
 
 QemuCocoaView *cocoaView;
@@ -1178,19 +1177,6 @@ static CGEventRef handleTapEvent(CGEventTapProxy proxy, CGEventType type, CGEven
 - (float) cdy {return cdy;}
 - (QEMUScreen) gscreen {return screen;}
 
-/*
- * Makes the target think all down keys are being released.
- * This prevents a stuck key problem, since we will not see
- * key up events for those keys after we have lost focus.
- */
-- (void) raiseAllKeys
-{
-    with_iothread_lock(^{
-        qkbd_state_lift_all_keys(kbd);
-    });
-}
-@end
-
 
 
 /*
@@ -1338,7 +1324,6 @@ static CGEventRef handleTapEvent(CGEventTapProxy proxy, CGEventType type, CGEven
 {
     COCOA_DEBUG("QemuCocoaAppController: applicationWillResignActive\n");
     [cocoaView ungrabMouse];
-    [cocoaView raiseAllKeys];
 }
 
 /* We abstract the method called by the Enter Fullscreen menu item
