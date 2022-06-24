@@ -1128,6 +1128,7 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
     }
     if (bios_size <= 0 ||
         (bios_size % 65536) != 0) {
+        printf("%d\n", bios_size);
         goto bios_error;
     }
     bios = g_malloc(sizeof(*bios));
@@ -1149,6 +1150,7 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
         }
         ret = rom_add_file_fixed(bios_name, (uint32_t)(-bios_size), -1);
         if (ret != 0) {
+            printf("b: %d\n", ret);
             goto bios_error;
         }
     }
