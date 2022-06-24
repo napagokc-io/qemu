@@ -1120,6 +1120,7 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
     /* BIOS load */
     bios_name = ms->firmware ?: default_firmware;
     filename = qemu_find_file(QEMU_FILE_TYPE_BIOS, bios_name);
+    puts(filename ? filename : "NULL");
     if (filename) {
         bios_size = get_image_size(filename);
     } else {
