@@ -15,6 +15,7 @@ def destdir_join(d1: str, d2: str) -> str:
     # c:\destdir + c:\prefix must produce c:\destdir\prefix
     if d2_path.drive or d2_path.root:
         d2_parts = d2_parts[1:]
+    print(d1, d2, str(Path(d1, *d2_parts)))
     return str(Path(d1, *d2_parts))
 
 introspect = os.environ.get('MESONINTROSPECT')
