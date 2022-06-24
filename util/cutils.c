@@ -1093,9 +1093,7 @@ char *get_relocated_path(const char *dir)
 
         size = wcsrtombs(NULL, &wdir_skipped_root, 0, &(mbstate_t){0});
         char *cursor = result->str + result->len;
-        g_string_set_size(result, result->len + size);
-        *cursor = G_DIR_SEPARATOR;
-        cursor++;
+        g_string_set_size(result, result->len + size - 1);
         wcsrtombs(cursor, &wdir_skipped_root, size, &(mbstate_t){0});
         g_free(wdir);
 #else
