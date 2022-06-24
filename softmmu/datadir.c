@@ -55,6 +55,7 @@ char *qemu_find_file(int type, const char *name)
 
     for (i = 0; i < data_dir_idx; i++) {
         buf = g_strdup_printf("%s/%s%s", data_dir[i], subdir, name);
+        puts(buf);
         if (access(buf, R_OK) == 0) {
             trace_load_file(name, buf);
             return buf;
@@ -96,7 +97,6 @@ void qemu_add_default_firmwarepath(void)
     g_strfreev(dirs);
 
     /* try to find datadir relative to the executable path */
-    puts(get_relocated_path(CONFIG_QEMU_DATADIR));
     qemu_add_data_dir(get_relocated_path(CONFIG_QEMU_DATADIR));
 }
 
