@@ -1150,7 +1150,7 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
         }
         ret = rom_add_file_fixed(bios_name, (uint32_t)(-bios_size), -1);
         if (ret != 0) {
-            printf("b: %d\n", ret);
+            printf("b: %zd\n", ret);
             goto bios_error;
         }
     }
