@@ -96,6 +96,7 @@ void qemu_add_default_firmwarepath(void)
     g_strfreev(dirs);
 
     /* try to find datadir relative to the executable path */
+    puts(get_relocated_path(CONFIG_QEMU_DATADIR));
     qemu_add_data_dir(get_relocated_path(CONFIG_QEMU_DATADIR));
 }
 
